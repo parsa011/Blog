@@ -6,7 +6,7 @@ namespace Portal.Domain.Core
 {
     public class IdGenerator
     {
-        public string GenerateGuid()
+        public static string GenerateGuid()
         {
             return Guid.NewGuid().ToString().Substring(0, 6).Replace("-", "");
         }

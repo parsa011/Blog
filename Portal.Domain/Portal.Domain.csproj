@@ -7,9 +7,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Portal.Domain.Core\Portal.Domain.Core.csproj" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
 
 </Project>
