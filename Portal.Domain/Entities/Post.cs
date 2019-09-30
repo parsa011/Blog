@@ -2,6 +2,7 @@
 using Portal.Domain.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -14,6 +15,7 @@ namespace Portal.Domain.Entities
             Id = IdGenerator.GenerateGuid();
         }
         public string Title { get; set; }
+        [StringLength(25, ErrorMessage = "خلاصه مطلب نمیتواند بیش از {0} کلمه باشد")]
         public string Summary { get; set; }
         public string Content { get; set; }
         public string Image { get; set; }

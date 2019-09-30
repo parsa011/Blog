@@ -1,0 +1,38 @@
+﻿using Microsoft.Extensions.DependencyInjection;
+using Portal.Data.DataBaseContext;
+using Portal.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Portal.Data.DataInitializer
+{
+    public class DataInitializer
+    {
+        public static async void InitializeDataAsync(IServiceProvider serviceProvider)
+        {
+            using (var context = serviceProvider.GetRequiredService<BlogDbContext>())
+            {
+                if (!context.Roles.Any())
+                {
+                    context.Roles.Add(new Role { Id = 1, Name = "Admin",Title = "مدیر سایت",CreatedTime = DateTime.Now });
+                    context.Roles.Add(new Role { Id = 1, Name = "User", Title = "کاربر سایت", CreatedTime = DateTime.Now });
+                }
+                if (!context.Roles.Any())
+                {
+                    context.Users.Add(new Users
+                    {
+                        Email = "parsa32569@gmail.com",
+                        FullName = "parsa mahmoudi",
+                        RoleId = 1,
+                        UserName = "parsa",
+                        Role = context.Roles.Where(r => r.Id == 1).FirstOrDefault(),
+                        ActiveCode = Guid.NewGuid().ToString().Substring(0, 5).Replace("-", "")
+                    });
+                }
+                await context.SaveChangesAsync();
+            }
+        }
+    }
+}
