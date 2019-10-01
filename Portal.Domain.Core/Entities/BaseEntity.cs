@@ -8,6 +8,7 @@ namespace Portal.Domain.Core.Entities
 {
     public class BaseEntity<T> : IBaseEntity<T>
     {
+        [Key]
         public T Id { get; set; }
 
         [Display(Name = "تاریخ ساخت")]

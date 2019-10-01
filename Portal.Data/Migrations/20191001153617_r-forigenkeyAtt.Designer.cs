@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Portal.Data.DataBaseContext;
 
 namespace Portal.Data.Migrations
 {
     [DbContext(typeof(BlogDbContext))]
-    partial class BlogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191001153617_r-forigenkeyAtt")]
+    partial class rforigenkeyAtt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,11 +89,13 @@ namespace Portal.Data.Migrations
 
                     b.Property<int>("ViewCount");
 
+                    b.Property<string>("WriterId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("CreatedBy");
+                    b.HasIndex("WriterId");
 
                     b.ToTable("Posts");
                 });
@@ -154,7 +158,7 @@ namespace Portal.Data.Migrations
 
                     b.HasOne("Portal.Domain.Entities.Users", "Writer")
                         .WithMany()
-                        .HasForeignKey("CreatedBy");
+                        .HasForeignKey("WriterId");
                 });
 
             modelBuilder.Entity("Portal.Domain.Entities.Users", b =>

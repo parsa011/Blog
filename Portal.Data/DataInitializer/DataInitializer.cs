@@ -16,8 +16,8 @@ namespace Portal.Data.DataInitializer
             {
                 if (!context.Roles.Any())
                 {
-                    context.Roles.Add(new Role { Id = 1, Name = "Admin",Title = "مدیر سایت",CreatedTime = DateTime.Now });
-                    context.Roles.Add(new Role { Id = 1, Name = "User", Title = "کاربر سایت", CreatedTime = DateTime.Now });
+                    context.Roles.Add(new Role {Name = "Admin", Title = "مدیر سایت" });
+                    context.Roles.Add(new Role {Name = "User", Title = "کاربر سایت" });
                 }
                 if (!context.Roles.Any())
                 {
@@ -28,7 +28,12 @@ namespace Portal.Data.DataInitializer
                         RoleId = 1,
                         UserName = "parsa",
                         Role = context.Roles.Where(r => r.Id == 1).FirstOrDefault(),
-                        ActiveCode = Guid.NewGuid().ToString().Substring(0, 5).Replace("-", "")
+                        ActiveCode = Guid.NewGuid().ToString().Substring(0, 5).Replace("-", ""),
+                        CreatedBy = "",
+                        CreatedTime = DateTime.Now,
+                        LastModifyBy ="",
+                        LastModifyTime = DateTime.Now,
+                        PasswordHash = PasswordHash.HashWithMD5("1234")
                     });
                 }
                 await context.SaveChangesAsync();

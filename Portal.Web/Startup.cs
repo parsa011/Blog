@@ -14,8 +14,8 @@ namespace Portal.Web
 {
     public class Startup
     {
-        private IConfiguration _configuration;
-        
+        private readonly IConfiguration _configuration;
+
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -24,26 +24,29 @@ namespace Portal.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-            services.AddDbContext<BlogDbContext>(options=>{
+            services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddControllersWithViews();
+            services.AddDbContext<BlogDbContext>(options =>
+            {
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.EnvironmentName == "Development")
             {
                 app.UseDeveloperExceptionPage();
             }
 
             app.UseStaticFiles();
+            app.UseRouting();
             app.UseMvcWithDefaultRoute();
 
-            app.Run(async (context) =>
+            app.UseEndpoints(endpoints =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                endpoints.MapControllers();
             });
         }
     }
