@@ -1,0 +1,361 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="Lib/Bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/Style.css" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="Lib/FontAwesome/Css/fontawesome.css" />
+    @RenderSection("Styles",false)
+    <title>@ViewBag.Title</title>
+</head>
+
+<body>
+    <main class="container-fluid">
+        <div class="col-12 p-0 bg-white" id="page">
+            <!--start header-->
+            <header class="col-lg-12">
+                <div class="row">
+                    <section class="col-lg-6">
+                        <img src="Images/Logo.png">
+                    </section>
+                    <!--search box-->
+                    <section class="col-lg-6">
+                        <div class="header-search">
+                            <form id="searchform" method="get">
+                                <input type="search" name="s" class="search-input" placeholder="جستجو"
+                                       autocomplete="off">
+                                <button type="submit" class="search-submit"><span class="fas fa-search"></span></button>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </header>
+            <!--end header-->
+        </div>
+        <!--start navbar-->
+        <nav class="navbar navbar-expand-sm">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!--right nav items-->
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">خانه <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">اموزش ها</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            دسته بندی
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">خروج</a>
+                    </li>
+                </ul>
+                <!--left nav items-->
+                <ul class="navbar-accountI-items">
+                    <li>
+                        <a href="#!" class="text-white">ثبت نام</a>
+                    </li>
+                    &nbsp; &nbsp;
+                    <li>
+                        <a href="#!" class="text-white">ورود</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--end navbar-->
+        <!--strat new news-->
+        <section class="new-news col-lg-12 p-0 mt-2">
+            <div class="col-lg-6 float-right p-0" id="newPosts">
+                <div id="NewPosts-carousle" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#NewPosts-carousle" data-slide-to="0" class="active"></li>
+                        <li data-target="#NewPosts-carousle" data-slide-to="1"></li>
+                        <li data-target="#NewPosts-carousle" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="carousel-caption d-none d-md-block bg-primary">
+                                <h5>اموزش سی شارپ</h5>
+                                <p>قسمت اول - سی شارپ چیست</p>
+                            </div>
+                            <img src="Images/HowFortniteWonSite.png" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="Images/topPost2.jpg" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block bg-primary">
+                                <h5>کامپایلر</h5>
+                                <p>کامپایلر برای چه به وجود امد</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="Images/Action_forest.png" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block bg-primary">
+                                <h5>اموزش identity</h5>
+                                <p>اموزش احراز هویت در asp.net core</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#NewPosts-carousle" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#NewPosts-carousle" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <!--articles sections-->
+            <div class="col-lg-6 float-left p-0 new-articles">
+                <div class="row no-gutters">
+                    <div class="col-12 col-sm-6 col-md-8">
+                        <div class="card  text-white">
+                            <img src="" height="200" class="card-img" alt="...">
+                            <div class="card-img-overlay bg-danger">
+                                <h5 class="card-title">عنوان مطلب</h5>
+                                <p class="card-text"> توضیح کوتاهی در مورد مطلب </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="card text-white">
+                            <img src="" height="200" class="card-img" alt="...">
+                            <div class="card-img-overlay bg-info">
+                                <h5 class="card-title">عنوان مطلب</h5>
+                                <p class="card-text">توضیح کوتاهی در مورد مطلب</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-6 col-md-4">
+                        <div class="card text-white">
+                            <img src="" height="200" class="card-img" alt="...">
+                            <div class="card-img-overlay bg-primary">
+                                <h5 class="card-title">عنوان مطلب</h5>
+                                <p class="card-text">توضیح کوتاهی در مورد مطلب</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-8">
+                        <div class="card text-white">
+                            <img src="" height="200" class="card-img" alt="...">
+                            <div class="card-img-overlay bg-success">
+                                <h5 class="card-title">عنوان مطلب</h5>
+                                <p class="card-text"> توضیح کوتاهی در مورد مطلب</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end new articles-->
+        </section>
+        <!--end new news section-->
+        <div class="col-lg-12 mt-2 site-main">
+            <div class="row">
+                <!--site articles-->
+                <section class="col-lg-9 site-articles">
+                    <div class="row">
+                        @RenderBody()
+                    </div>
+                </section>
+                <!--side bar-->
+                <aside class="col-lg-3 pr-0 sidebar">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                            <li class="breadcrumb-item"><a href="#">اموزش ها</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">c#</li>
+                        </ol>
+                    </nav>
+                    @RenderSection("SideBar")
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-12 p-0 mt-2 text-white page-title">
+                                <span>
+                                    جدیدترین خبر ها
+                                </span>
+                            </div>
+                            <!--best posts-->
+                            <div class="list-group col-12 p-0 best-posts">
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <strong class="mb-2">
+                                            <i class="fa fa-chevron-right"></i>
+                                            اموزش احراز هویت در asp.net core
+                                        </strong>
+                                    </div>
+                                    <p class="mb-1 f-13">
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                        استفاده از طراحان گرافیک است
+                                    </p>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <strong class="mb-2">
+                                            <i class="fa fa-chevron-right"></i>
+                                            اموزش احراز هویت در asp.net core
+                                        </strong>
+                                    </div>
+                                    <p class="mb-1 f-13">
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                        استفاده از طراحان گرافیک است
+                                    </p>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <strong class="mb-2">
+                                            <i class="fa fa-chevron-right"></i>
+                                            اموزش احراز هویت در asp.net core
+                                        </strong>
+                                    </div>
+                                    <p class="mb-1 f-13">
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                        استفاده از طراحان گرافیک است
+                                    </p>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <strong class="mb-2">
+                                            <i class="fa fa-chevron-right"></i>
+                                            اموزش احراز هویت در asp.net core
+                                        </strong>
+                                    </div>
+                                    <p class="mb-1 f-13">
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                        استفاده از طراحان گرافیک است
+                                    </p>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <strong class="mb-2">
+                                            <i class="fa fa-chevron-right"></i>
+                                            اموزش احراز هویت در asp.net core
+                                        </strong>
+                                    </div>
+                                    <p class="mb-1 f-13">
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                        استفاده از طراحان گرافیک است
+                                    </p>
+                                </a>
+                            </div>
+                            <!--end best posts-->
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-12 p-0 mt-2 text-white page-title">
+                                <span>
+                                    سایت های مرتبط
+                                </span>
+                            </div>
+                            <!--linked sites-->
+                            <ul class="list-group col-12 p-0">
+                                <li class="list-group-item">
+                                    <a href="http://www.fekre-bekr.ir">فکر بکر - اموزش برنامه نویسی</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+                <!--end sidebar-->
+            </div>
+        </div>
+    </main>
+
+    <footer class="section footer-classic context-dark p-2 mt-3" style="background: #2d3246;">
+        <div class="container">
+            <div class="row row-30">
+                <div class="col-md-4 col-xl-5">
+                    <div class="pr-xl-4">
+                        <a class="brand" href="index.html">
+                            <img class="brand-logo-light"
+                                 src="images/agency/logo-inverse-140x37.png" alt="" width="140" height="37"
+                                 srcset="images/agency/logo-retina-inverse-280x74.png 2x">
+                        </a>
+                        <p class="mb-2">
+                            این سایت با هدف توسعه و اموزش برنامه نویسی و بررسی تکتولوژی های جدید ایجاد شده.
+                        </p>
+                        <!-- Rights-->
+                        <p class="rights">
+                            <span>©  </span><span class="copyright-year">2018</span><span> </span><span>Waves</span><span>. </span><span>
+                                کپی
+                                رایت
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <dl class="contact-list mb-2">
+                        <p class="text-bold">ادرس:</p>
+                        <p class="pl-3">ساری</p>
+                    </dl>
+                    <dl class="contact-list mb-2">
+                        <p class="text-bold">ایمیل:</p>
+                        <p class="pl-3">ایمیل سایت</p>
+                    </dl>
+                    <dl class="contact-list">
+                        <p class="text-bold">شماره تماس:</p>
+                        <p>
+                            <a href="tel:#">+98 9116880563</a>
+                        </p>
+                    </dl>
+                </div>
+                <div class="col-md-4 col-xl-3">
+                    <h5>لینک ها</h5>
+                    <ul class="nav-list">
+                        <li><a href="#"> صفحه اصلی</a></li>
+                        <li><a href="#"> اموزش ها</a></li>
+                        <li><a href="#"> ناحیه کاربری</a></li>
+                        <li><a href="#"> اخرین اخبار</a></li>
+                        <li><a href="#"> تماس با ما</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters social-container">
+            <div class="col">
+                <a class="social-inner" href="#">
+                    <span class="icon mdi mdi-facebook"></span><span>Facebook</span>
+                </a>
+            </div>
+            <div class="col">
+                <a class="social-inner" href="#">
+                    <span class="icon mdi mdi-instagram"></span><span>instagram</span>
+                </a>
+            </div>
+            <div class="col">
+                <a class="social-inner" href="#">
+                    <span class="icon mdi mdi-twitter"></span><span>twitter</span>
+                </a>
+            </div>
+            <div class="col">
+                <a class="social-inner" href="#">
+                    <span class="icon mdi mdi-youtube-play"></span><span>google</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="Lib/Core/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="Lib/Bootstrap/js/bootstrap.min.js"></script>
+    @RenderSection("Scripts",false)
+</body>
+
+</html>

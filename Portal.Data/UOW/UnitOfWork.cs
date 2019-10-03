@@ -19,7 +19,7 @@ namespace Portal.Data.UOW
         #endregion
 
         #region repositories
-        public IGenericRepository<Users> _usersGenericRepository;
+        private IGenericRepository<Users> _usersGenericRepository;
         public IGenericRepository<Users> UsersGenericRepository {
             get
             {

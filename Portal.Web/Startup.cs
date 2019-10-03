@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Portal.Data.DataBaseContext;
+using Portal.Data.UOW;
 
 namespace Portal.Web
 {
@@ -26,9 +28,21 @@ namespace Portal.Web
         {
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddControllersWithViews();
+            services.AddScoped<UnitOfWork, UnitOfWork>();
             services.AddDbContext<BlogDbContext>(options =>
             {
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
+            });
+            services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                option.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(options =>
+            {
+                options.LoginPath = "/Account/Login";
+                options.LogoutPath = "/Account/SingOut";
+                options.ExpireTimeSpan = TimeSpan.FromSeconds(43200);
             });
         }
 
