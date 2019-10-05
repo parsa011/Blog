@@ -37,10 +37,14 @@ namespace Portal.Data.UOW
         {
             await _db.SaveChangesAsync();
         }
+
         public void Dispose()
         {
             this.Dispose();
         }
+
+
+
         #endregion
     }
 }

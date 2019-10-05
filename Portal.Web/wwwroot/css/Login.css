@@ -1,0 +1,13 @@
+.app{
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.card{
+   border-radius: 0 !important
+}
+body{
+    background: #e4e5e6 !important;
+    direction:rtl
+}

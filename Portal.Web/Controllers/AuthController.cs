@@ -21,7 +21,7 @@ namespace Portal.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Login()
+        public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated == false)
             {
@@ -34,7 +34,7 @@ namespace Portal.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(LoginViewModel model, string ReturnUrl)
+        public IActionResult Login(LoginViewModel model, string ReturnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -65,13 +65,13 @@ namespace Portal.Web.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("Mobile", "اکانت شما فعال نیست");
+                        ModelState.AddModelError("Username", "اکانت شما فعال نیست");
                     }
                     return View();
                 }
                 else
                 {
-                    ModelState.AddModelError("Mobile", "اطلاعات وارد شده صحیح نمی باشد");
+                    ModelState.AddModelError("Username", "اطلاعات وارد شده صحیح نمی باشد");
                     return View(model);
                 }
             }
