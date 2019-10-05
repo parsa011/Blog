@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Portal.Data.UOW
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork
     {
         #region ctor
         private readonly BlogDbContext _db;
@@ -37,13 +37,6 @@ namespace Portal.Data.UOW
         {
             await _db.SaveChangesAsync();
         }
-
-        public void Dispose()
-        {
-            this.Dispose();
-        }
-
-
 
         #endregion
     }
