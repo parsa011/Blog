@@ -27,7 +27,6 @@ namespace Portal.Data.DataInitializer
                         FullName = "parsa mahmoudi",
                         RoleId = 1,
                         UserName = "parsa",
-                        Role = context.Roles.Where(r => r.Id == 1).FirstOrDefault(),
                         ActiveCode = Guid.NewGuid().ToString().Substring(0, 5).Replace("-", ""),
                         CreatedBy = "",
                         CreatedTime = DateTime.Now,

@@ -70,11 +70,11 @@
                 <!--left nav items-->
                 <ul class="navbar-accountI-items">
                     <li class="d-inline-block">
-                        <a href="/" class="text-white">ثبت نام</a>
+                        <a href="/auth/register" class="text-white">ثبت نام</a>
                     </li>
                     &nbsp; &nbsp;
                     <li class="d-inline-block">
-                        <a href="/auth/login" class="text-white">ورود</a>
+                        <a href="/auth/login?ReturnUrl=@Context.Request.Path" class="text-white">ورود</a>
                     </li>
                 </ul>
             </div>

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Portal.Data.DataBaseContext;
 
 namespace Portal.Data.Migrations
 {
     [DbContext(typeof(BlogDbContext))]
-    partial class BlogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191006130249_mig-update2")]
+    partial class migupdate2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,6 +144,8 @@ namespace Portal.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RoleId");
+
                     b.ToTable("Users");
                 });
 
@@ -155,6 +159,14 @@ namespace Portal.Data.Migrations
                     b.HasOne("Portal.Domain.Entities.Users", "Writer")
                         .WithMany()
                         .HasForeignKey("CreatedBy");
+                });
+
+            modelBuilder.Entity("Portal.Domain.Entities.Users", b =>
+                {
+                    b.HasOne("Portal.Domain.Entities.Role", "Role")
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

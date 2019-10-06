@@ -28,7 +28,5 @@ namespace Portal.Domain.Entities
         public bool IsActive { get; set; }
         public int RoleId { get; set; }
 
-        [ForeignKey("RoleId")]
-        public virtual Role Role { get; set; }
     }
 }

@@ -1,4 +1,9 @@
-﻿@model Portal.Common.ViewModels.Account.LoginViewModel
+﻿
+@{
+    Layout = null;
+}
+
+@model Portal.Common.ViewModels.Account.RegisterViewModel
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ورود</title>
+    <title>ثبت نام</title>
     <!--login styles-->
     <link href="~/css/Login.css" rel="stylesheet" type="text/css" />
     <!--reset style for reset css default styles-->
@@ -21,22 +26,35 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <form asp-action="Login" asp-controller="auth" method="post" autocomplete="off">
+                <form asp-action="register" asp-controller="auth" method="post" autocomplete="off">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="card-group">
                         <div class="card p-4">
                             <div class="card-body text-left">
-                                <h1>ورود</h1>
-                                <p class="text-muted">ورود به حساب کاربری</p>
+                                <h1>حساب کاربری</h1>
+
+                                <p class="text-muted">ساخت حساب کاربری</p>
+
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-user-alt"></i></span>
                                     </div>
-                                    <input asp-for="UserName" type="text" class="form-control bg-white" placeholder="نام کاربری">
+                                    <input asp-for="Username" type="text" class="form-control bg-white" placeholder="نام کاربری">
                                     <div class="invalid-feedback d-block">
-                                        <span asp-validation-for="UserName"></span>
+                                        <span asp-validation-for="Username"></span>
                                     </div>
                                 </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-mail-bulk"></i></span>
+                                    </div>
+                                    <input asp-for="Email" type="text" class="form-control bg-white" placeholder="ایمیل">
+                                    <div class="invalid-feedback d-block">
+                                        <span asp-validation-for="Email"></span>
+                                    </div>
+                                </div>
+
                                 <div class="input-group mb-4">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-lock-alt"></i></span>
@@ -46,34 +64,21 @@
                                         <span asp-validation-for="Password"></span>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <input asp-for="IsRemember" />
-                                        <label>
-                                            @Html.DisplayNameFor(model => model.IsRemember)
-                                        </label>
+
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-lock-alt"></i></span>
+                                    </div>
+                                    <input asp-for="ConfirmPassword" type="password" class="form-control bg-white" placeholder=" تکرار رمز عبور">
+                                    <div class="invalid-feedback d-block">
+                                        <span asp-validation-for="ConfirmPassword"></span>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-6 p-0">
-                                        <button type="submit" class="btn btn-primary px-4 float-right">ورود</button>
+                                        <button type="submit" class="btn btn-primary px-4 float-right">ساخت حساب</button>
                                     </div>
-                                    <div class="col-6 text-right">
-                                        <button type="button" class="btn btn-link px-0">فراموشی رمز عبور</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card text-white bg-primary py-5 d-md-down-none col-sm-12">
-                            <div class="card-body text-center">
-                                <div>
-                                    <h2>لورم ایپسوم</h2>
-                                    <p>
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                                        گرافیک است
-                                    </p>
-                                    <a class="btn btn-primary active mt-3" href="/auth/register">ثبت نام کنید</a>
                                 </div>
                             </div>
                         </div>

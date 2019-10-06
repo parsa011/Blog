@@ -13,6 +13,5 @@ namespace Portal.Domain.Entities
         public string Title { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Users> Users { get; set; }
     }
 }
