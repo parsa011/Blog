@@ -131,5 +131,58 @@ namespace Portal.Web.Controllers
                 return View(model);
             }
         }
+
+        [HttpGet]
+        public IActionResult ActivateAccount()
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult ActivateAccount(ActivateAccount model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _db.UsersGenericRepository.Where(u => u.ActiveCode == model.Code).FirstOrDefault();
+                if (user != null)
+                {
+                    user.ActiveCode = CodeGenerator.EmailCode();
+                    user.IsActive = true;
+                    _db.UsersGenericRepository.Update(user);
+                    _db.SaveAsync();
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("Code", "کد فعالسازی صحیح نیست");
+                    return View(model);
+                }
+            }
+            else
+            {
+                return View(model);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult SignOut(string ReturnUrl)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                if (Url.IsLocalUrl(ReturnUrl))
+                {
+                    return Redirect(ReturnUrl);
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

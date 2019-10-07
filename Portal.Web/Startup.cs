@@ -55,6 +55,7 @@ namespace Portal.Web
             }
 
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseRouting();
             app.UseMvcWithDefaultRoute();
 

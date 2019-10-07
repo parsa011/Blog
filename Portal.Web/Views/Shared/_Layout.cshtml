@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="css/Style.css" />
     <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" href="Lib/FontAwesome/Css/fontawesome.css" />
-    @RenderSection("Styles",false)
+    @RenderSection("Styles", false)
     <title>@ViewBag.Title</title>
 </head>
 
@@ -68,15 +68,31 @@
                     </li>
                 </ul>
                 <!--left nav items-->
-                <ul class="navbar-accountI-items">
-                    <li class="d-inline-block">
-                        <a href="/auth/register" class="text-white">ثبت نام</a>
-                    </li>
-                    &nbsp; &nbsp;
-                    <li class="d-inline-block">
-                        <a href="/auth/login?ReturnUrl=@Context.Request.Path" class="text-white">ورود</a>
-                    </li>
-                </ul>
+                @{ if (User.Identity.IsAuthenticated)
+                    {
+                        <ul class="navbar-accountI-items">
+                            <li class="d-inline-block">
+                                <a href="/auth/register" class="text-white">ثبت نام</a>
+                            </li>
+                            &nbsp; &nbsp;
+                            <li class="d-inline-block">
+                                <a href="/auth/login?ReturnUrl=@Context.Request.Path" class="text-white">ورود</a>
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="navbar-accountI-items">
+                            <li class="d-inline-block">
+                                <a href="/profile/index" class="text-white">@User.Identity.Name</a>
+                            </li>
+                            &nbsp; &nbsp;
+                            <li class="d-inline-block">
+                                <a href="/auth/signout?ReturnUrl=@Context.Request.Path" class="text-white">خروج</a>
+                            </li>
+                        </ul>
+                    }
+                }
             </div>
         </nav>
         <!--end navbar-->
@@ -355,7 +371,7 @@
     </footer>
     <script type="text/javascript" src="~/Lib/Core/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="~/Lib/Bootstrap/js/bootstrap.min.js"></script>
-    @RenderSection("Scripts",false)
+    @RenderSection("Scripts", false)
 </body>
 
 </html>
