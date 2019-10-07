@@ -14,9 +14,10 @@ namespace Portal.Services.Sender
     {
         public async Task SendAsync(string message, string to)
         {
+            
             var emailMessage = new MimeMessage();
 
-            emailMessage.From.Add(new MailboxAddress("سایت وبلاگی", "parsa32569@gmail.com"));
+            emailMessage.From.Add(new MailboxAddress("سایت وبلاگی", "parsa.cc19@gmail.com"));
             emailMessage.To.Add(new MailboxAddress("", to));
             emailMessage.Body = new TextPart(TextFormat.Plain)
             {
@@ -25,7 +26,6 @@ namespace Portal.Services.Sender
 
             using (var client = new SmtpClient())
             {
-                client.LocalDomain = "https://localhost:44353";
                 await client.ConnectAsync("smtp.relay.uri", 25, SecureSocketOptions.None).ConfigureAwait(false);
                 await client.SendAsync(emailMessage).ConfigureAwait(false);
                 await client.DisconnectAsync(true).ConfigureAwait(false);

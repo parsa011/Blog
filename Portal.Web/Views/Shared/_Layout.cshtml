@@ -63,36 +63,33 @@
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">خروج</a>
-                    </li>
                 </ul>
                 <!--left nav items-->
-                @{ if (User.Identity.IsAuthenticated)
-                    {
-                        <ul class="navbar-accountI-items">
+                <ul class="navbar-accountI-items">
+                    @{ if (!User.Identity.IsAuthenticated)
+                        {
+
                             <li class="d-inline-block">
                                 <a href="/auth/register" class="text-white">ثبت نام</a>
                             </li>
-                            &nbsp; &nbsp;
+                            <li class="d-inline-block">&nbsp; &nbsp;</li>
                             <li class="d-inline-block">
                                 <a href="/auth/login?ReturnUrl=@Context.Request.Path" class="text-white">ورود</a>
                             </li>
-                        </ul>
-                    }
-                    else
-                    {
-                        <ul class="navbar-accountI-items">
+
+                        }
+                        else
+                        {
                             <li class="d-inline-block">
                                 <a href="/profile/index" class="text-white">@User.Identity.Name</a>
                             </li>
-                            &nbsp; &nbsp;
+                            <li class="d-inline-block">&nbsp; &nbsp;</li>
                             <li class="d-inline-block">
                                 <a href="/auth/signout?ReturnUrl=@Context.Request.Path" class="text-white">خروج</a>
                             </li>
-                        </ul>
+                        }
                     }
-                }
+                </ul>
             </div>
         </nav>
         <!--end navbar-->

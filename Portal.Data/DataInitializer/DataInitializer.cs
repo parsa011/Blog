@@ -23,7 +23,7 @@ namespace Portal.Data.DataInitializer
                 {
                     context.Users.Add(new Users
                     {
-                        Email = "parsa32569@gmail.com",
+                        Email = "parsa@gmail.com",
                         FullName = "parsa mahmoudi",
                         RoleId = 1,
                         UserName = "parsa",

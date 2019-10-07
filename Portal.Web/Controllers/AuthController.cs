@@ -118,12 +118,14 @@ namespace Portal.Web.Controllers
                     ActiveCode = CodeGenerator.EmailCode(),
                     PasswordHash = PasswordHash.HashWithMD5(model.Password),
                     RoleId = 2,
-
+                    Email = model.Email,
+                    CreatedTime = DateTime.Now,
+                    FullName = model.FullName
                 };
                 _db.UsersGenericRepository.Insert(user);
                 _db.SaveAsync();
                 string messageBody = "کد فعالسازی شما :" + user.ActiveCode;
-                _sender.SendAsync(user.Email, messageBody);
+                _sender.SendAsync(messageBody,user.Email);
                 return RedirectToAction("ActivateAccount");
             }
             else

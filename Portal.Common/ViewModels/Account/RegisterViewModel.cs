@@ -12,6 +12,11 @@ namespace Portal.Common.ViewModels.Account
         [MaxLength(20, ErrorMessage = "مقدار {0} نمی تواند بیش تر از {1} کاراکتر باشد")]
         public string Username { get; set; }
 
+        [Display(Name = "نام")]
+        [Required(ErrorMessage = "مقدار {0} را وارد نمایید")]
+        [MaxLength(20, ErrorMessage = "مقدار {0} نمی تواند بیش تر از {1} کاراکتر باشد")]
+        public string FullName { get; set; }
+
         [Display(Name = "ایمیل")]
         [Required(ErrorMessage = "مقدار {0} را وارد نمایید")]
         [DataType(DataType.EmailAddress)]

@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Portal.Web.Areas.Admin.Controllers
+namespace Portal.Web.Controllers
 {
-    [Area("Admin")]
-    [Authorize(Roles = "Admin")]
-    public class DashboardController : Controller
+    [Authorize]
+    public class ProfileController : Controller
     {
         public IActionResult Index()
         {

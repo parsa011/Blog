@@ -47,6 +47,16 @@
 
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-user-alt"></i></span>
+                                    </div>
+                                    <input asp-for="FullName" type="text" class="form-control bg-white" placeholder="نام">
+                                    <div class="invalid-feedback d-block">
+                                        <span asp-validation-for="FullName"></span>
+                                    </div>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-mail-bulk"></i></span>
                                     </div>
                                     <input asp-for="Email" type="text" class="form-control bg-white" placeholder="ایمیل">

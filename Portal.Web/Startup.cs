@@ -28,7 +28,7 @@ namespace Portal.Web
         {
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddControllersWithViews();
-            services.AddScoped<UnitOfWork, UnitOfWork>();
+            services.AddTransient<UnitOfWork, UnitOfWork>();
             services.AddDbContext<BlogDbContext>(options =>
             {
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
@@ -40,8 +40,9 @@ namespace Portal.Web
                 option.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             }).AddCookie(options =>
             {
-                options.LoginPath = "/Account/Login";
-                options.LogoutPath = "/Account/SingOut";
+                options.LoginPath = "/auth/Login";
+                options.LogoutPath = "/auth/SingOut";
+                options.AccessDeniedPath = "/Auth/AccessDenied";
                 options.ExpireTimeSpan = TimeSpan.FromSeconds(43200);
             });
         }
