@@ -43,13 +43,37 @@ namespace Portal.Web.Areas.Admin.Controllers
                     Title = model.Title
                 };
                 _db.CategoriesGenericRepository.Insert(category);
-                _db.SaveAsync();
-                return RedirectToAction("categories");
+                _db.Save();
+                return Redirect("/Admin/Categories/Index");
             }
             else
             {
                 return View(model);
             }
         }
+
+        [HttpPost]
+        public bool Delete(int id)
+        {
+            if (id != null && id != 0)
+            {
+                var category = _db.CategoriesGenericRepository.Where(c => c.Id == id).FirstOrDefault();
+                if (category != null)
+                {
+                    _db.CategoriesGenericRepository.Delete(category);
+                    _db.Save();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

@@ -1,40 +1,32 @@
 ﻿@model IEnumerable<Portal.Domain.Entities.Category>
 
-@{
-    ViewData["Title"] = "Index";
+    @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-}
+    }
 
-<p>
-    <a href="/Admin/Categories/Create">افزودن</a>
-</p>
+    <p>
+        <a href="/Admin/Categories/Create">افزودن</a>
+    </p>
 
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th>
-                عنوان
-            </th>
-           
-            <th>
-                زمان ساخت
-            </th>
-            <th>
-                سازنده
-            </th>
-            <th>
-                تاریخ اخرین تغییر
-            </th>
-            <th>
-                اخرین تغییر توسط
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table">
+        <thead class="thead-dark">
             <tr>
+                <th>
+                    عنوان
+                </th>
+                <th>
+                    زمان ساخت
+                </th>
+                <th>
+                    سازنده
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr id="@item.Id">
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
@@ -45,17 +37,35 @@
                     @Html.DisplayFor(modelItem => item.CreatedBy)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LastModifyTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastModifyBy)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("ویرایش", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    <a href="#!" class="btnDelete">حذف</a>
                 </td>
             </tr>
-        }
-    </tbody>
-</table>
+            }
+        </tbody>
+    </table>
+
+    @section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('.btnDelete').click(function () {
+                var id = $(this).parent().parent().attr('id');
+                var parent = $(this).parent().parent();
+                $.ajax('/Admin/Categories/Delete?id=' + id, {
+                    type: 'POST',  // http method
+                    success: function (result) {
+                        if (result == true) {
+                            $(parent).hide();
+                        }
+                        else {
+                            alert("error");
+                        }
+                    },
+                    error: function (jqXhr, textStatus, errorMessage) {
+                        alert(errorMessage);
+                    }
+                });
+            })
+        });
+    </script>
+    }

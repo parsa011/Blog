@@ -85,9 +85,9 @@ namespace Portal.Data.UOW
         #endregion
 
         #region actions
-        public async void SaveAsync()
+        public void Save()
         {
-            await _db.SaveChangesAsync();
+            _db.SaveChanges();
         }
 
 

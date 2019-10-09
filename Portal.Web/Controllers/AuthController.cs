@@ -125,7 +125,7 @@ namespace Portal.Web.Controllers
                     FullName = model.FullName
                 };
                 _db.UsersGenericRepository.Insert(user);
-                _db.SaveAsync();
+                _db.Save();
                 string messageBody = "کد فعالسازی شما :" + user.ActiveCode;
                 _sender.SendAsync(messageBody,user.Email);
                 return RedirectToAction("ActivateAccount");
@@ -160,7 +160,7 @@ namespace Portal.Web.Controllers
                     user.ActiveCode = CodeGenerator.EmailCode();
                     user.IsActive = true;
                     _db.UsersGenericRepository.Update(user);
-                    _db.SaveAsync();
+                    _db.Save();
                     return RedirectToAction("Index", "Home");
                 }
                 else
