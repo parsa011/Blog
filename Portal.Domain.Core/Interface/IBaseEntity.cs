@@ -8,8 +8,8 @@ namespace Portal.Domain.Core.Interface
     {
         T Id { get; set; }
         DateTime CreatedTime { get; set; }
-        T CreatedBy { get; set; }
+        string CreatedBy { get; set; }
         DateTime LastModifyTime { get; set; }
-        T LastModifyBy { get; set; }
+        string LastModifyBy { get; set; }
     }
 }

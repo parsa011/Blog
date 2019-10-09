@@ -1,13 +1,60 @@
 ﻿<!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--reset style for reset css default styles-->
+    <link href="~/css/reset.css" rel="stylesheet" type="text/css">
+    <!--Bootstrap rtl styles-->
+    <link href="~/Lib/Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <title>پنل ادمین</title>
 </head>
 <body>
-    <div>
-        @RenderBody()
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-primary mb-3">
+        <div class="flex-row d-flex">
+            <button type="button" class="navbar-toggler mr-2 " data-toggle="offcanvas"
+                    title="Toggle responsive left sidebar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#" title="Free Bootstrap 4 Admin Template">پنل ادمین</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="collapsingNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">@User.Identity.Name <span class="sr-only">Home</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">خروج</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid" id="main">
+        <div class="row row-offcanvas row-offcanvas-left">
+            <div class="col-md-3 col-lg-2 sidebar-offcanvas bg-light pl-0" id="sidebar" role="navigation">
+                <ul class="nav flex-column sticky-top pl-0 pt-5 mt-3">
+                    <li class="nav-item"><a class="nav-link" href="/Admin/Categories/Index">مدیریت دسته بندی</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">مدیریت مطلب</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">مدیریت کاربران</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">مدیریت کامنت ها</a></li>
+                </ul>
+            </div>
+            <!--/col-->
+
+            <div class="col main pt-5 mt-3">
+                @RenderBody()
+            </div>
+            <!--/main col-->
+        </div>
+
     </div>
+    <!--/.container-->
+    <script type="text/javascript" src="~/Lib/Core/jquery-3.3.1.min.js"></script>
+    @RenderSection("Scripts", false)
 </body>
 </html>

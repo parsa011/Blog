@@ -15,12 +15,12 @@ namespace Portal.Domain.Core.Entities
         public DateTime CreatedTime { get; set; }
 
         [Display(Name = "ساخته شده توسط")]
-        public T CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
         
         [Display(Name = "اخرین تغییر")]
         public DateTime LastModifyTime { get; set; }
 
         [Display(Name = "اخرین تغییر توسط")]
-        public T LastModifyBy { get; set; }
+        public string LastModifyBy { get; set; }
     }
 }

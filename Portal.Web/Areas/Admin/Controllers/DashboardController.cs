@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Portal.Web.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area(areaName:"Admin")]
     [Authorize(Roles = "Admin")]
     public class DashboardController : Controller
     {

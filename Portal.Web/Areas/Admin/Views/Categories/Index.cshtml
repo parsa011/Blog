@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Portal.Domain.Entities.Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a href="/Admin/Categories/Create">افزودن</a>
+</p>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                عنوان
+            </th>
+           
+            <th>
+                زمان ساخت
+            </th>
+            <th>
+                سازنده
+            </th>
+            <th>
+                تاریخ اخرین تغییر
+            </th>
+            <th>
+                اخرین تغییر توسط
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastModifyTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastModifyBy)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

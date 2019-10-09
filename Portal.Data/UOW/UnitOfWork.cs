@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Portal.Data.UOW
 {
-    public class UnitOfWork
+    public class UnitOfWork 
     {
         #region ctor
         private readonly BlogDbContext _db;
@@ -30,6 +30,58 @@ namespace Portal.Data.UOW
                 return _usersGenericRepository;
             }
         }
+
+        private IGenericRepository<Role> _rolesGenericRepository;
+        public IGenericRepository<Role> RolesGenericRepository
+        {
+            get
+            {
+                if (_rolesGenericRepository == null)
+                {
+                    _rolesGenericRepository = new GenericRepository<Role>(_db);
+                }
+                return _rolesGenericRepository;
+            }
+        }
+
+        private IGenericRepository<Post> _postsGenericRepository;
+        public IGenericRepository<Post> PostsGenericRepository
+        {
+            get
+            {
+                if (_postsGenericRepository == null)
+                {
+                    _postsGenericRepository = new GenericRepository<Post>(_db);
+                }
+                return _postsGenericRepository;
+            }
+        }
+
+        private IGenericRepository<Comment> _commentsGenericRepository;
+        public IGenericRepository<Comment> CommentsGenericRepository
+        {
+            get
+            {
+                if (_commentsGenericRepository == null)
+                {
+                    _commentsGenericRepository = new GenericRepository<Comment>(_db);
+                }
+                return _commentsGenericRepository;
+            }
+        }
+
+        private IGenericRepository<Category> _categoriesGenericRepository;
+        public IGenericRepository<Category> CategoriesGenericRepository
+        {
+            get
+            {
+                if (_categoriesGenericRepository == null)
+                {
+                    _categoriesGenericRepository = new GenericRepository<Category>(_db);
+                }
+                return _categoriesGenericRepository;
+            }
+        }
         #endregion
 
         #region actions
@@ -38,6 +90,11 @@ namespace Portal.Data.UOW
             await _db.SaveChangesAsync();
         }
 
+
+        public void Dispose()
+        {
+            this.Dispose();
+        }
         #endregion
     }
 }

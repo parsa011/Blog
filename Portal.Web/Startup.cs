@@ -58,7 +58,14 @@ namespace Portal.Web
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseRouting();
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                      name: "areas",
+                       template: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
+                );
+            });
 
             app.UseEndpoints(endpoints =>
             {

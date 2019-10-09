@@ -54,7 +54,9 @@ namespace Portal.Web.Controllers
                         var claims = new List<Claim>
                         {
                             new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
+                            new Claim(ClaimTypes.Role,_db.RolesGenericRepository.GetById(user.RoleId).Name),
                             new Claim(ClaimTypes.Name,user.UserName),
+                            new Claim(ClaimTypes.GivenName,user.FullName)
                         };
                         var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                         var principal = new ClaimsPrincipal(identity);
