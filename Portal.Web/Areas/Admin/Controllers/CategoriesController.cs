@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Portal.Common.ViewModels;
+using Portal.Common.ViewModels.Category;
 using Portal.Data.UOW;
 using Portal.Domain.Entities;
 namespace Portal.Web.Areas.Admin.Controllers
@@ -22,7 +22,17 @@ namespace Portal.Web.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            return View(_db.CategoriesGenericRepository.Where().ToList());
+            var model = new List<CategoryListViewModel>();
+            foreach (var item in _db.CategoriesGenericRepository.Where().ToList())
+            {
+                model.Add(new CategoryListViewModel {
+                    Id = item.Id,
+                    CreatedTime = item.CreatedTime,
+                    CreatedBy = _db.UsersGenericRepository.Where(u =>u.Id == item.CreatedBy).FirstOrDefault().FullName,
+                    Title = item.Title
+                });
+            }
+            return View(model);
         }
 
         [HttpGet]

@@ -1,37 +1,38 @@
-﻿@model IEnumerable<Portal.Domain.Entities.Category>
+﻿@model IEnumerable<Portal.Common.ViewModels.Category.CategoryListViewModel>
+@using Portal.Common.Extention;
 
-    @{
+@{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    }
+}
 
-    <p>
-        <a href="/Admin/Categories/Create">افزودن</a>
-    </p>
+<p>
+    <a href="/Admin/Categories/Create">افزودن</a>
+</p>
 
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th>
-                    عنوان
-                </th>
-                <th>
-                    زمان ساخت
-                </th>
-                <th>
-                    سازنده
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                عنوان
+            </th>
+            <th>
+                زمان ساخت
+            </th>
+            <th>
+                سازنده
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr id="@item.Id">
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreatedTime)
+                    @item.CreatedTime.ToPersianDateString()
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedBy)
@@ -41,11 +42,11 @@
                     <a href="#!" class="btnDelete">حذف</a>
                 </td>
             </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
 
-    @section Scripts{
+@section Scripts{
     <script>
         $(document).ready(function () {
             $('.btnDelete').click(function () {
@@ -68,4 +69,4 @@
             })
         });
     </script>
-    }
+}

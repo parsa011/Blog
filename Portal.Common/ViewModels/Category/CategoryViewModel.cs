@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Portal.Common.ViewModels
+namespace Portal.Common.ViewModels.Category
 {
     public class CategoryViewModel
     {
