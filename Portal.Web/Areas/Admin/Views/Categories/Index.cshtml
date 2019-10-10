@@ -38,7 +38,7 @@
                     @Html.DisplayFor(modelItem => item.CreatedBy)
                 </td>
                 <td>
-                    @Html.ActionLink("ویرایش", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    <a href="/Admin/Categories/Edit?id=@item.Id">ویرایش</a> |
                     <a href="#!" class="btnDelete">حذف</a>
                 </td>
             </tr>

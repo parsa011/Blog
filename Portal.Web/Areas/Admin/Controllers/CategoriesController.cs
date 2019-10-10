@@ -85,5 +85,41 @@ namespace Portal.Web.Areas.Admin.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            if (id != 0 )
+            {
+                var cat = _db.CategoriesGenericRepository.Where(c => c.Id == id).FirstOrDefault();
+                var entity = new CategoryListViewModel
+                {
+                    Title = cat.Title,
+                    Id = cat.Id
+                };
+                return View(entity);
+            }
+            else
+            {
+                return Redirect("/Admin/Categories/Index");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Edit(CategoryListViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var entity = _db.CategoriesGenericRepository.Where(c => c.Id == model.Id).FirstOrDefault();
+                entity.LastModifyBy = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                entity.LastModifyTime = DateTime.Now;
+                entity.Title = model.Title;
+                _db.CategoriesGenericRepository.Update(entity);
+                _db.Save();
+                return Redirect("/Admin/Categories/Index");
+            }
+            else
+                return View(model);
+        }
+
     }
 }
