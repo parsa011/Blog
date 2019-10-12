@@ -22,5 +22,18 @@ namespace Portal.Web.Areas.Admin.Controllers
         {
             return View(_db.UsersGenericRepository.Where().ToList());
         }
+
+        [HttpGet]
+        public IActionResult Details(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                return View(_db.UsersGenericRepository.Where(u => u.Id == id).FirstOrDefault());
+            }
+            else
+            {
+                return Redirect("/Admin/Users/Index");
+            }
+        }
     }
 }
