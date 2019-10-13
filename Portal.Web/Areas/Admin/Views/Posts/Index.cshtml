@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Portal.Common.ViewModels.Posts.PostsListViewModel>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a href="/Admin/Posts/Create">افزودن</a>
+</p>
+<table class="table table-hover table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Summary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Summary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Image)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    <a href="/Admin/Posts/Edit/@item.Id">ویرایش</a> |
+                    <a href="/Admin/Posts/Details/@item.Id">جزئیات</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

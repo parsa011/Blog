@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Portal.Common.Generators;
+using Portal.Common.ViewModels.Account;
 using Portal.Data.UOW;
 
 namespace Portal.Web.Areas.Admin.Controllers
@@ -33,6 +35,56 @@ namespace Portal.Web.Areas.Admin.Controllers
             else
             {
                 return Redirect("/Admin/Users/Index");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Edit(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                var user = _db.UsersGenericRepository.Where(u => u.Id == id).FirstOrDefault();
+                var useredit = new UsersEditViewModel
+                {
+                    ActiveCode = user.ActiveCode,
+                    Email = user.Email,
+                    FullName = user.FullName,
+                    IsActive = user.IsActive,
+                    RoleId = user.RoleId,
+                    Username = user.UserName,
+                    Id = user.Id
+                };
+                return View(useredit);
+            }
+            else
+            {
+                return Redirect("/Admin/Users/Index");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Edit(UsersEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _db.UsersGenericRepository.Where(u => u.Id == model.Id).FirstOrDefault();
+                user.IsActive = model.IsActive;
+                user.FullName = model.FullName;
+                user.UserName = model.Username;
+                if (!string.IsNullOrEmpty(model.Password))
+                {
+                    user.PasswordHash = PasswordHash.HashWithMD5(model.Password);
+                }
+                user.RoleId = model.RoleId;
+                user.Email = model.Email;
+                user.ActiveCode = model.ActiveCode;
+                _db.UsersGenericRepository.Update(user);
+                _db.Save();
+                return Redirect("/Admin/Users/Index");
+            }
+            else
+            {
+                return View(model);
             }
         }
     }
