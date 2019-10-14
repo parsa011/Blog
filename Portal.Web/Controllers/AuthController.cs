@@ -27,8 +27,9 @@ namespace Portal.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string ReturnUrl)
         {
+            ViewBag.ReturnUrl = ReturnUrl;
             if (User.Identity.IsAuthenticated == false)
             {
                 return View();
@@ -119,7 +120,7 @@ namespace Portal.Web.Controllers
                     UserName = model.Username,
                     ActiveCode = CodeGenerator.EmailCode(),
                     PasswordHash = PasswordHash.HashWithMD5(model.Password),
-                    RoleId = 2,
+                    RoleId = _db.RolesGenericRepository.Where(r => r.Name == "User").FirstOrDefault().Id,
                     Email = model.Email,
                     CreatedTime = DateTime.Now,
                     FullName = model.FullName

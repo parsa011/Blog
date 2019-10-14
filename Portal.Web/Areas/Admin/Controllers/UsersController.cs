@@ -54,6 +54,7 @@ namespace Portal.Web.Areas.Admin.Controllers
                     Username = user.UserName,
                     Id = user.Id
                 };
+                ViewBag.Roles = _db.RolesGenericRepository.Where().ToList();
                 return View(useredit);
             }
             else

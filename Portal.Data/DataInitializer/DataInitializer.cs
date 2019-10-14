@@ -18,6 +18,7 @@ namespace Portal.Data.DataInitializer
                 {
                     context.Roles.Add(new Role {Name = "Admin", Title = "مدیر سایت" });
                     context.Roles.Add(new Role {Name = "User", Title = "کاربر سایت" });
+                    await context.SaveChangesAsync();
                 }
                 if (!context.Roles.Any())
                 {
@@ -25,7 +26,7 @@ namespace Portal.Data.DataInitializer
                     {
                         Email = "parsa@gmail.com",
                         FullName = "parsa mahmoudi",
-                        RoleId = 1,
+                        RoleId = context.Roles.Where(r => r.Name == "Admin").FirstOrDefault().Id,
                         UserName = "parsa",
                         ActiveCode = Guid.NewGuid().ToString().Substring(0, 5).Replace("-", ""),
                         CreatedBy = "",
@@ -34,8 +35,9 @@ namespace Portal.Data.DataInitializer
                         LastModifyTime = DateTime.Now,
                         PasswordHash = PasswordHash.HashWithMD5("1234")
                     });
+                    await context.SaveChangesAsync();
                 }
-                await context.SaveChangesAsync();
+                
             }
         }
     }

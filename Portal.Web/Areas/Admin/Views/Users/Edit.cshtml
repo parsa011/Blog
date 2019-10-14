@@ -51,12 +51,14 @@
                 <div class="form-group col-md-6">
                     <label asp-for="RoleId" class="control-label"></label>
                     <select asp-for="RoleId" class="form-control">
-                        <option value="1">ادمین</option>
-                        <option value="2">کاربر</option>
+                        @foreach (var item in ViewBag.Roles)
+                        {
+                            <option value="@item.Id">@item.Title</option>
+                        }
                     </select>
                     <span asp-validation-for="RoleId" class="text-danger"></span>
                 </div>
-                <div class="form-group form-check col-md-6">
+                <div class="form-group form-check col-md-6" style="padding:35px;">
                     <label class="form-check-label">
                         <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
                     </label>

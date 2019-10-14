@@ -12,7 +12,6 @@ namespace Portal.Common.ViewModels.Posts
         [Display(Name = "عنوان")]
         public string Title { get; set; }
 
-        [StringLength(25, ErrorMessage = "خلاصه مطلب نمیتواند بیش از {0} کلمه باشد")]
         [Display(Name = "خلاصه")]
         public string Summary { get; set; }
 
