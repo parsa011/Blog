@@ -89,6 +89,7 @@ namespace Portal.Web.Areas.Admin.Controllers
             }
             else
             {
+                ViewBag.Categories = _db.CategoriesGenericRepository.Where().ToList();
                 return View(model);
             }
         }
@@ -126,25 +127,28 @@ namespace Portal.Web.Areas.Admin.Controllers
                 {
                     Directory.CreateDirectory(uploadsRootFolder);
                 }
-                var filePath = Path.Combine(uploadsRootFolder, model.Image.FileName);
-                if (model.Image.ContentType == "image/jpeg" || model.Image.ContentType == "image/png")
+                if (model.Image != null)
                 {
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    var filePath = Path.Combine(uploadsRootFolder, model.Image.FileName);
+                    if (model.Image.ContentType == "image/jpeg" || model.Image.ContentType == "image/png")
                     {
-                        await model.Image.CopyToAsync(fileStream).ConfigureAwait(false);
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await model.Image.CopyToAsync(fileStream).ConfigureAwait(false);
+                        }
                     }
-                }
-                else
-                {
-                    ModelState.AddModelError("Image", "عکس را به درستی انتخاب نمایید");
-                    return View(model);
+                    else
+                    {
+                        ModelState.AddModelError("Image", "عکس را به درستی انتخاب نمایید");
+                        return View(model);
+                    }
                 }
                 var post = _db.PostsGenericRepository.Where(u => u.Id == model.Id).FirstOrDefault();
                 post.Title = model.Title;
                 post.Summary = model.Summary;
                 post.Content = model.Content;
                 post.CategoryId = model.CategoryId;
-                post.Image = "/Uploads/" + model.Image.FileName;
+                post.Image = (model.Image != null) ? "/Uploads/" + model.Image.FileName : post.Image;
                 post.LastModifyTime = DateTime.Now;
                 _db.PostsGenericRepository.Update(post);
                 _db.Save();
@@ -152,6 +156,7 @@ namespace Portal.Web.Areas.Admin.Controllers
             }
             else
             {
+                ViewBag.Categories = _db.CategoriesGenericRepository.Where().ToList();
                 return View(model);
             }
         }

@@ -79,12 +79,14 @@ namespace Portal.Web.Areas.Admin.Controllers
                 user.RoleId = model.RoleId;
                 user.Email = model.Email;
                 user.ActiveCode = model.ActiveCode;
+                user.LastModifyTime = DateTime.Now;
                 _db.UsersGenericRepository.Update(user);
                 _db.Save();
                 return Redirect("/Admin/Users/Index");
             }
             else
             {
+                ViewBag.Roles = _db.RolesGenericRepository.Where().ToList();
                 return View(model);
             }
         }
