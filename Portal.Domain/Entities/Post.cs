@@ -15,8 +15,10 @@ namespace Portal.Domain.Entities
             Id = IdGenerator.GenerateGuid();
         }
         public string Title { get; set; }
-        [StringLength(25, ErrorMessage = "خلاصه مطلب نمیتواند بیش از {0} کلمه باشد")]
+
+        [DataType(DataType.Html)]
         public string Summary { get; set; }
+        [DataType(DataType.Html)]
         public string Content { get; set; }
         public string Image { get; set; }
         public int ViewCount { get; set; }

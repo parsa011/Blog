@@ -160,5 +160,29 @@ namespace Portal.Web.Areas.Admin.Controllers
                 return View(model);
             }
         }
+
+        public IActionResult Details(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                var post = _db.PostsGenericRepository.Where(p => p.Id == id).FirstOrDefault();
+                var detailsPost = new PostDetailsViewModel
+                {
+                    Id = post.Id,
+                    Content = post.Content,
+                    Image = post.Image,
+                    Summary = post.Summary,
+                    Title = post.Title,
+                    ViewCount = post.ViewCount,
+                    CreatedDate = post.CreatedTime,
+                    Category = _db.CategoriesGenericRepository.Where(c => c.Id == post.CategoryId).FirstOrDefault().Title
+                };
+                return View(detailsPost);
+            }
+            else
+            {
+                return Redirect("/Admin/Posts/Index");
+            }
+        }
     }
 }

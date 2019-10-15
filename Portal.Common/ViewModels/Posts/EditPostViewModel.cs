@@ -16,10 +16,12 @@ namespace Portal.Common.ViewModels.Posts
         [Display(Name = "خلاصه")]
         [StringLength(55, ErrorMessage = "خلاصه مطلب نمیتواند بیش از {0} کلمه باشد")]
         [Required(ErrorMessage = "مقدار {0} را وارد نمایید")]
+        [DataType(DataType.Html)]
         public string Summary { get; set; }
 
         [Display(Name = "محتوا")]
         [Required(ErrorMessage = "مقدار {0} را وارد نمایید")]
+        [DataType(DataType.Html)]
         public string Content { get; set; }
 
         [Display(Name = "عکس")]
