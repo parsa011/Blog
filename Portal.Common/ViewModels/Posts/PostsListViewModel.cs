@@ -20,5 +20,7 @@ namespace Portal.Common.ViewModels.Posts
 
         [Display(Name = "دسته بندی")]
         public string  Category { get; set; }
+
+        public DateTime CreatedTime { get; set; }
     }
 }
