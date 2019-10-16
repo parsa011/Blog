@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-12">
-        <form action="Create" method="post" enctype="multipart/form-data">   
+        <form action="Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group col-md-12">
                 <label asp-for="Content" class="control-label"></label>
-                <input asp-for="Content" class="form-control" />
+                <textarea asp-for="Content" class="form-control"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-row">
@@ -48,7 +48,7 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="افزودن" class="btn btn-primary" />
+                <input type="submit" id="btnSubmit" value="افزودن" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -57,3 +57,10 @@
 <div>
     <a href="/Admin/Posts/index">بازگشت</a>
 </div>
+
+@section Scripts{
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('Content');
+    </script>
+}

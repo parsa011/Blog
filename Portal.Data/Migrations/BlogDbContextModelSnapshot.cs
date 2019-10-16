@@ -80,7 +80,8 @@ namespace Portal.Data.Migrations
 
                     b.Property<DateTime>("LastModifyTime");
 
-                    b.Property<string>("Summary");
+                    b.Property<string>("Summary")
+                        .HasMaxLength(55);
 
                     b.Property<string>("Title");
 

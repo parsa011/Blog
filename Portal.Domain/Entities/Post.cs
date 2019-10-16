@@ -17,6 +17,7 @@ namespace Portal.Domain.Entities
         public string Title { get; set; }
 
         [DataType(DataType.Html)]
+        [StringLength(55)]
         public string Summary { get; set; }
         [DataType(DataType.Html)]
         public string Content { get; set; }

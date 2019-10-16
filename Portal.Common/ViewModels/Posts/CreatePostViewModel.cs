@@ -20,6 +20,7 @@ namespace Portal.Common.ViewModels.Posts
 
         [Display(Name = "محتوا")]
         [Required(ErrorMessage = "مقدار {0} را وارد نمایید")]
+        [DataType(DataType.Html)]
         public string Content { get; set; }
 
         [Display(Name = "عکس")]

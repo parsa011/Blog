@@ -184,5 +184,16 @@ namespace Portal.Web.Areas.Admin.Controllers
                 return Redirect("/Admin/Posts/Index");
             }
         }
+
+        [HttpGet]
+        public IActionResult Delete(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                _db.PostsGenericRepository.Delete(id);
+                _db.Save();
+            }
+            return Redirect("/Admin/Posts/Index");
+        }
     }
 }

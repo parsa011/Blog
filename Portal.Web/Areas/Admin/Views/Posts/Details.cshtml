@@ -56,6 +56,14 @@
 </div>
 <div>
     <a href="/Admin/Posts/Edit/@Model.Id">ویرایش</a> |
-    <a href="/Admin/Posts/Delete/@Model.Id" onclick="confirm("ایا از حذف مطمئن هستید");">حذف</a> |
+    <a href="/Admin/Posts/Delete/@Model.Id" class="btnDelete">حذف</a> |
     <a href="/Admin/Posts/Index">بازگشت</a>
 </div>
+
+@section Scripts{
+    <script>
+        $('.btnDelete').click(function () {
+            confirm("ایا از حذف مطمئن هستید ؟");
+        });
+    </script>
+}
