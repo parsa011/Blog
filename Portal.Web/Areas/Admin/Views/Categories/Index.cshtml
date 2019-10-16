@@ -50,6 +50,7 @@
     <script>
         $(document).ready(function () {
             $('.btnDelete').click(function () {
+                confirm("ایا از حذف مطمئن هستید؟");
                 var id = $(this).parent().parent().attr('id');
                 var parent = $(this).parent().parent();
                 $.ajax('/Admin/Categories/Delete?id=' + id, {
