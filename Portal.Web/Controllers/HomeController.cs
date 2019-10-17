@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Portal.Common.ViewModels.Posts;
 using Portal.Data.UOW;
+using Portal.Domain.Entities;
 
 namespace Portal.Web.Controllers
 {
@@ -41,9 +42,30 @@ namespace Portal.Web.Controllers
                     Title = post.Title,
                     Category = _db.CategoriesGenericRepository.Where(c => c.Id == post.CategoryId).FirstOrDefault().Title
                 };
+                ViewBag.postId = id;
                 return View(detailsPost);
             }
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult Comment(string postId, string Email, string Name, string cmContent, string parentId)
+        {
+            if (!string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(cmContent))
+            {
+                var comment = new Comment
+                {
+                    Content = cmContent,
+                    Email = Email,
+                    Name = Name,
+                    ParentId = (!string.IsNullOrEmpty(parentId)) ? int.Parse(parentId) : 0,
+                    CreatedTime = DateTime.Now,
+                    PostId = postId
+                };
+                _db.CommentsGenericRepository.Insert(comment);
+                _db.Save();
+            }
+            return RedirectToAction("Details", new { id = postId });
         }
     }
 }

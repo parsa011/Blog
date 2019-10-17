@@ -11,6 +11,7 @@ namespace Portal.Domain.Entities
         public string Email { get; set; }
         public string Content { get; set; }
         public int ParentId { get; set; }
-        public int like { get; set; }
+        public DateTime CreatedTime { get; set; }
+        public string PostId { get; set; }
     }
 }

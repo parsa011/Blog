@@ -1,0 +1,111 @@
+﻿@model List<Portal.Domain.Entities.Comment>
+@using Portal.Common.Extention
+@{
+    Layout = null;
+}
+
+<div class="col-12 p-1">
+    @foreach (var item in Model.Where(c=> c.ParentId ==0))
+    {
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid">
+                        <p class="text-secondary text-center float-right"> @item.CreatedTime.ToPersianDateString()</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p>
+                            <a class="float-right" href="https://maniruzzaman-akash.blogspot.com/p/contact.html">
+                                <strong>
+                                    @item.Name
+                                </strong>
+                            </a>
+                        </p>
+                        <div class="clearfix"></div>
+                        <p class="mt-2 text-justify">
+                            @item.Content
+                        </p>
+                        <p>
+                            <a href="#!" id="btn-replay" class="float-right btn ml-2 f-13" target="@item.Id" data-toggle="modal" data-target="#exampleModal">
+                                <i class="fa fa-reply"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                @if (Model.Where(c => c.ParentId == item.Id).Any())
+                {
+                    foreach (var subItem in Model.Where(c => c.ParentId == item.Id))
+                    {
+                        <div class="card card-inner mt-2">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid">
+                                        <p class="text-secondary text-center">@subItem.CreatedTime.ToPersianDateString()</p>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <p>
+                                            <a href="https://maniruzzaman-akash.blogspot.com/p/contact.html">
+                                                <strong>@subItem.Name</strong>
+                                            </a>
+                                        </p>
+                                        <p class="text-justify">
+                                            @subItem.Content
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="post" asp-action="Comment" asp-controller="Home">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <input type="hidden" value="@ViewBag.postId" name="postId" />
+                    <input type="hidden" value="" id="txtParentId" name="parentId" />
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="txtName">نام</label>
+                            <input type="text" name="Name" required class="form-control" id="txtName" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="txtEmail">ایمیل شما</label>
+                            <input type="email" name="Email" required class="form-control" id="txtEmail" placeholder="">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="axtComment">نظر شما</label>
+                        <textarea class="form-control" name="CmContent" id="axtComment" placeholder="" required=""></textarea>
+                    </div>
+
+                    <button class="btn btn-primary btn-block" type="submit">ثبت نظر</button>
+
+                    <p class="text-muted mb-0 mt-1">
+                        مشخصات خود را برای ثبت نظر وارد کنید.
+                    </p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
+                    <button class="btn btn-primary" type="submit">ثبت نظر</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

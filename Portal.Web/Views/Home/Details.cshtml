@@ -22,20 +22,21 @@
 </div>
 
 <div class="col-md-12 bg-white p-2">
-    <form>
+    <form method="post" asp-action="Comment" asp-controller="Home">
+        <input type="hidden" value="@Model.Id" name="postId" />
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="txtName">نام</label>
-                <input type="email" class="form-control" id="txtName" placeholder="">
+                <input type="text" name="Name" required class="form-control" id="txtName" placeholder="">
             </div>
             <div class="form-group col-md-6">
                 <label for="txtEmail">ایمیل شما</label>
-                <input type="password" class="form-control" id="txtEmail" placeholder="">
+                <input type="email" name="Email" required class="form-control" id="txtEmail" placeholder="">
             </div>
         </div>
         <div class="mb-3">
             <label for="axtComment">نظر شما</label>
-            <textarea class="form-control" id="axtComment" placeholder="" required=""></textarea>
+            <textarea class="form-control" name="CmContent" id="axtComment" placeholder="" required=""></textarea>
         </div>
 
         <button class="btn btn-primary btn-block" type="submit">ثبت نظر</button>
@@ -45,77 +46,10 @@
         </p>
     </form>
     <hr>
-    <div class="col-12 p-1">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-2">
-                        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid">
-                        <p class="text-secondary text-center float-right"> 1 ساعت پیش</p>
-                    </div>
-                    <div class="col-md-10">
-                        <p>
-                            <a class="float-right" href="https://maniruzzaman-akash.blogspot.com/p/contact.html">
-                                <strong>
-                                    پارسا
-                                    محمودی
-                                </strong>
-                            </a>
-                        </p>
-                        <div class="clearfix"></div>
-                        <p class="mt-2 text-justify">
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
-                            از
-                            صنعت چاپ و با
-                            استفاده از
-                            طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-                            سطرآنچنان که
-                            لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-                            بهبود
-                            ابزارهای کاربردی می باشد.
-                        </p>
-                        <p>
-                            <a href="#!" class="float-right btn  ml-2 f-13">
-                                <i class="fa fa-reply"></i>
-                            </a>
-                            <a href="#!" class="float-right text-danger btn f-13"> <i class="fa fa-heart"></i> </a>
-                        </p>
-                    </div>
-                </div>
-                <div class="card card-inner mt-2">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid">
-                                <p class="text-secondary text-center">15 دقیقه قبل</p>
-                            </div>
-                            <div class="col-md-10">
-                                <p>
-                                    <a href="https://maniruzzaman-akash.blogspot.com/p/contact.html">
-                                        <strong>پارسا محمودی</strong>
-                                    </a>
-                                </p>
-                                <p class="text-justify">
-                                    لورم ایپسوم متن ساختگی با تولید سادگی
-                                    نامفهوم از
-                                    صنعت چاپ و با
-                                    استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله
-                                    در
-                                    ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد
-                                    نیاز و
-                                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                                </p>
-                                <p>
-                                    <a class="float-right btn text-white btn-danger f-13"> <i class="fa fa-heart"></i> لایک</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @(await Component.InvokeAsync("CommentComponent", Model.Id))
 </div>
+
+
 
 
 @section Sidebar{
@@ -172,4 +106,14 @@
             </div>
         </div>
     </div>
+}
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btn-replay').click(function () {
+                console.log("sdfgds");
+                $('#txtParentId').val($(this).attr('target'));
+            });
+        })
+    </script>
 }
