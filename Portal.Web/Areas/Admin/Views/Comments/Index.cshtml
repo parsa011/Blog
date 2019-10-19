@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Portal.Domain.Entities.Comment>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-hover table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                نام
+            </th>
+            <th>
+                ایمیل
+            </th>
+            <th>
+                محتوای نظر
+            </th>
+            <th>
+                تاریخ ثبت
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedTime)
+                </td>
+                <td>
+                    <a href="/Admin/Comments/Delete/@item.Id">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

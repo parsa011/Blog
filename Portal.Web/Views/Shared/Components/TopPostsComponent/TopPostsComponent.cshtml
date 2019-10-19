@@ -1,0 +1,32 @@
+﻿@model List<Portal.Common.ViewModels.Posts.PostsListViewModel>
+@{ 
+    Layout = null;
+}
+
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-12 p-0 mt-2 text-white page-title">
+                <span>
+                    محبوب ترین خبر ها
+                </span>
+            </div>
+            <!--best posts-->
+            <div class="list-group col-12 p-0 best-posts">
+                @foreach (var item in Model)
+                {
+                    <a href="/Home/Details/@item.Id" class="list-group-item list-group-item-action" dideo-checked="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <strong class="mb-2">
+                                <i class="fa fa-chevron-right"></i>
+                               @item.Title
+                            </strong>
+                        </div>
+                        <p class="mb-1 f-13">
+                            @item.Summary
+                        </p>
+                    </a>
+                }
+            </div>
+            <!--end best posts-->
+        </div>
+    </div>
