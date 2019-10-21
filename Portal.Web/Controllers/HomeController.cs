@@ -67,5 +67,55 @@ namespace Portal.Web.Controllers
             }
             return RedirectToAction("Details", new { id = postId });
         }
+
+        [HttpGet]
+        public IActionResult Search(string searchText)
+        {
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                var model = new List<PostsListViewModel>();
+                foreach (var item in _db.PostsGenericRepository.Where(p => p.Title.Contains(searchText)))
+                {
+                    model.Add(new PostsListViewModel
+                    {
+                        Title = item.Title,
+                        CreatedTime = item.CreatedTime,
+                        Id = item.Id,
+                        Summary = item.Summary,
+                        Image = item.Image
+                    });
+                }
+                return View("Index",model);
+            }
+            else
+            {
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpGet]
+        public IActionResult ShowInGroup(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                var model = new List<PostsListViewModel>();
+                foreach (var item in _db.PostsGenericRepository.Where(p => p.CategoryId == int.Parse(id)))
+                {
+                    model.Add(new PostsListViewModel
+                    {
+                        Title = item.Title,
+                        CreatedTime = item.CreatedTime,
+                        Id = item.Id,
+                        Summary = item.Summary,
+                        Image = item.Image
+                    });
+                }
+                return View("Index", model);
+            }
+            else
+            {
+                return RedirectToAction(nameof(Index));
+            }
+        }
     }
 }

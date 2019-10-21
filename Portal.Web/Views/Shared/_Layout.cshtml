@@ -26,8 +26,8 @@
                     <!--search box-->
                     <section class="col-lg-6">
                         <div class="header-search">
-                            <form id="searchform" method="get">
-                                <input type="search" name="s" class="search-input" placeholder="جستجو"
+                            <form id="searchform" method="get" asp-action="search" asp-controller="Home">
+                                <input type="search" name="searchText" class="search-input" placeholder="جستجو"
                                        autocomplete="off">
                                 <button type="submit" class="search-submit"><span class="fas fa-search"></span></button>
                             </form>
