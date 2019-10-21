@@ -29,7 +29,7 @@ namespace Portal.Web.Areas.Admin.Controllers
             {
                 foreach (var item in _db.CommentsGenericRepository.Where(c => c.ParentId == int.Parse(id)))
                 {
-                    _db.CommentsGenericRepository.Delete(int.Parse(id));
+                    _db.CommentsGenericRepository.Delete(item.Id);
                 }
                 _db.CommentsGenericRepository.Delete(int.Parse(id));
                 _db.Save();

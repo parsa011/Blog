@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Portal.Domain.Entities.Comment>
+@using Portal.Common.Extention
 
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -36,7 +37,7 @@
                     @Html.DisplayFor(modelItem => item.Content)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreatedTime)
+                    @item.CreatedTime.ToPersianDateString()
                 </td>
                 <td>
                     <a href="/Admin/Comments/Delete/@item.Id">حذف</a>
