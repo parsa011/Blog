@@ -33,6 +33,7 @@
                 <div class="form-group col-md-6">
                     <label asp-for="CategoryId" class="control-label"></label>
                     <select asp-for="CategoryId" class="form-control">
+                        <option value="0">دسته بندی نشده</option>
                         @foreach (var item in ViewBag.Categories)
                         {
                             <option value="@item.Id">@item.Title</option>

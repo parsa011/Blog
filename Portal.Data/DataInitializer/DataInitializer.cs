@@ -37,7 +37,11 @@ namespace Portal.Data.DataInitializer
                     });
                     await context.SaveChangesAsync();
                 }
-                
+                if (!context.Categories.Any())
+                {
+                    context.Categories.Add(new Category { CreatedTime = DateTime.Now, Title = "دسته بندی نشده" });
+                    await context.SaveChangesAsync();
+                }
             }
         }
     }
