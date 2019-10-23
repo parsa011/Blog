@@ -70,6 +70,10 @@ namespace Portal.Web.Areas.Admin.Controllers
                 var category = _db.CategoriesGenericRepository.Where(c => c.Id == id).FirstOrDefault();
                 if (category != null)
                 {
+                    foreach (var item in _db.PostsGenericRepository.Where(p => p.CategoryId == id))
+                    {
+                        item.CategoryId = _db.CategoriesGenericRepository.Where(c => c.Title == "دسته بندی نشده").FirstOrDefault().Id;
+                    }
                     _db.CategoriesGenericRepository.Delete(category);
                     _db.Save();
                     return true;
